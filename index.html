@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stock Dashboard (from Google Sheets)</title>
+    <title>Stock Dashboard</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -26,7 +26,7 @@
 
     <main class="dashboard-container">
       <div class="stock-grid">
-        <!-- ===== SAHAM 1: MSTR ===== -->
+        <!-- ===== SAHAM 1: MSTR (ID sekarang semua huruf kecil) ===== -->
         <div class="stock-container">
           <div class="card chart-card" id="tv-widget-mstr"></div>
           <div class="key-metrics-grid">
@@ -36,19 +36,19 @@
             </div>
             <div class="metric-card">
               <h3 class="metric-title">Market Cap</h3>
-              <p class="metric-value" id="mstr-marketCap">-</p>
+              <p class="metric-value" id="mstr-marketcap">-</p>
             </div>
             <div class="metric-card">
               <h3 class="metric-title">Enterprise Value</h3>
-              <p class="metric-value" id="mstr-enterpriseValue">-</p>
+              <p class="metric-value" id="mstr-enterprisevalue">-</p>
             </div>
             <div class="metric-card">
               <h3 class="metric-title">1Y Return</h3>
-              <p class="metric-value" id="mstr-1yReturn">-</p>
+              <p class="metric-value" id="mstr-1yreturn">-</p>
             </div>
             <div class="metric-card">
               <h3 class="metric-title">P/E Ratio</h3>
-              <p class="metric-value" id="mstr-peRatio">-</p>
+              <p class="metric-value" id="mstr-peratio">-</p>
             </div>
             <div class="metric-card">
               <h3 class="metric-title">EPS (TTM)</h3>
@@ -60,12 +60,11 @@
             </div>
             <div class="metric-card">
               <h3 class="metric-title">Avg Vol (3M)</h3>
-              <p class="metric-value" id="mstr-avgVolume">-</p>
+              <p class="metric-value" id="mstr-avgvolume">-</p>
             </div>
           </div>
         </div>
-
-        <!-- ===== SAHAM 2: GOOGL ===== -->
+        <!-- ===== SAHAM 2: GOOGL (ID sekarang semua huruf kecil) ===== -->
         <div class="stock-container">
           <div class="card chart-card" id="tv-widget-googl"></div>
           <div class="key-metrics-grid">
@@ -75,19 +74,19 @@
             </div>
             <div class="metric-card">
               <h3 class="metric-title">Market Cap</h3>
-              <p class="metric-value" id="googl-marketCap">-</p>
+              <p class="metric-value" id="googl-marketcap">-</p>
             </div>
             <div class="metric-card">
               <h3 class="metric-title">Enterprise Value</h3>
-              <p class="metric-value" id="googl-enterpriseValue">-</p>
+              <p class="metric-value" id="googl-enterprisevalue">-</p>
             </div>
             <div class="metric-card">
               <h3 class="metric-title">1Y Return</h3>
-              <p class="metric-value" id="googl-1yReturn">-</p>
+              <p class="metric-value" id="googl-1yreturn">-</p>
             </div>
             <div class="metric-card">
               <h3 class="metric-title">P/E Ratio</h3>
-              <p class="metric-value" id="googl-peRatio">-</p>
+              <p class="metric-value" id="googl-peratio">-</p>
             </div>
             <div class="metric-card">
               <h3 class="metric-title">EPS (TTM)</h3>
@@ -99,12 +98,11 @@
             </div>
             <div class="metric-card">
               <h3 class="metric-title">Avg Vol (3M)</h3>
-              <p class="metric-value" id="googl-avgVolume">-</p>
+              <p class="metric-value" id="googl-avgvolume">-</p>
             </div>
           </div>
         </div>
-
-        <!-- ===== SAHAM 3: AMZN ===== -->
+        <!-- ===== SAHAM 3: AMZN (ID sekarang semua huruf kecil) ===== -->
         <div class="stock-container">
           <div class="card chart-card" id="tv-widget-amzn"></div>
           <div class="key-metrics-grid">
@@ -114,19 +112,19 @@
             </div>
             <div class="metric-card">
               <h3 class="metric-title">Market Cap</h3>
-              <p class="metric-value" id="amzn-marketCap">-</p>
+              <p class="metric-value" id="amzn-marketcap">-</p>
             </div>
             <div class="metric-card">
               <h3 class="metric-title">Enterprise Value</h3>
-              <p class="metric-value" id="amzn-enterpriseValue">-</p>
+              <p class="metric-value" id="amzn-enterprisevalue">-</p>
             </div>
             <div class="metric-card">
               <h3 class="metric-title">1Y Return</h3>
-              <p class="metric-value" id="amzn-1yReturn">-</p>
+              <p class="metric-value" id="amzn-1yreturn">-</p>
             </div>
             <div class="metric-card">
               <h3 class="metric-title">P/E Ratio</h3>
-              <p class="metric-value" id="amzn-peRatio">-</p>
+              <p class="metric-value" id="amzn-peratio">-</p>
             </div>
             <div class="metric-card">
               <h3 class="metric-title">EPS (TTM)</h3>
@@ -138,21 +136,11 @@
             </div>
             <div class="metric-card">
               <h3 class="metric-title">Avg Vol (3M)</h3>
-              <p class="metric-value" id="amzn-avgVolume">-</p>
+              <p class="metric-value" id="amzn-avgvolume">-</p>
             </div>
           </div>
         </div>
       </div>
-          <div class="raw-data-container">
-        <h2>Data Mentah dari Google Sheet:</h2>
-        <pre id="raw-data-output">Mengambil data...</pre>
-    </div>
-
-    <!-- Bagian dasbor lainnya tetap ada untuk referensi -->
-    <main class="dashboard-container">
-        <div class="stock-grid">
-            <!-- ... (semua elemen dasbor lainnya tetap sama) ... -->
-        </div>
     </main>
 
     <script
