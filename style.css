@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+:root {
+  --bg-color: #121212;
+  --card-bg-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  --primary-color: #f7931a;
+  --border-color: #333;
+  --green-color: #26a69a;
+  --red-color: #ef5350;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+.main-header {
+  background-color: var(--primary-color);
+  padding: 1rem 2rem;
+}
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.ticker-tape {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dashboard-container {
+  padding: 2rem;
+}
+
+.stock-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
+}
+
+.stock-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.chart-card {
+  height: 400px;
+  background-color: var(--card-bg-color);
+  border-radius: 4px;
+}
+
+.key-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.metric-card {
+  background-color: var(--card-bg-color);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.metric-title {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+  white-space: nowrap;
+}
+
+.metric-value {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.metric-value small {
+  font-size: 0.9rem;
+  font-weight: normal;
+  display: block;
+}
+
+.positive {
+  color: var(--green-color) !important;
+}
+.negative {
+  color: var(--red-color) !important;
+}

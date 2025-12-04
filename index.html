@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Dashboard (Dummy Data)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="logo">Strategy B</div>
+    </header>
+
+    <div class="tradingview-widget-container ticker-tape">
+      <script
+        type="text/javascript"
+        src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+        async
+      >
+        {
+          "symbols": [
+            { "proName": "NASDAQ:MSFT", "title": "Microsoft" },
+            { "proName": "NASDAQ:AAPL", "title": "Apple" },
+            { "proName": "NASDAQ:NVDA", "title": "NVIDIA" },
+            { "proName": "NASDAQ:GOOGL", "title": "Alphabet (Google)" },
+            { "proName": "NASDAQ:AMZN", "title": "Amazon" },
+            { "proName": "NASDAQ:META", "title": "Meta Platforms" },
+            { "proName": "NYSE:BRK.B", "title": "Berkshire Hathaway" },
+            { "proName": "NYSE:LLY", "title": "Eli Lilly" },
+            { "proName": "NASDAQ:AVGO", "title": "Broadcom" },
+            { "proName": "NASDAQ:TSLA", "title": "Tesla" },
+            { "proName": "NYSE:V", "title": "Visa" },
+            { "proName": "NYSE:JPM", "title": "JPMorgan Chase" },
+            { "proName": "NYSE:WMT", "title": "Walmart" },
+            { "proName": "NYSE:XOM", "title": "Exxon Mobil" },
+            { "proName": "NYSE:UNH", "title": "UnitedHealth" },
+            { "proName": "NYSE:MA", "title": "Mastercard" },
+            { "proName": "NYSE:PG", "title": "Procter & Gamble" },
+            { "proName": "NYSE:JNJ", "title": "Johnson & Johnson" },
+            { "proName": "NYSE:HD", "title": "Home Depot" },
+            { "proName": "NYSE:COST", "title": "Costco" },
+            { "proName": "NYSE:MRK", "title": "Merck" },
+            { "proName": "NYSE:ABBV", "title": "AbbVie" },
+            { "proName": "NASDAQ:ADBE", "title": "Adobe" },
+            { "proName": "NYSE:CVX", "title": "Chevron" },
+            { "proName": "NYSE:CRM", "title": "Salesforce" },
+            { "proName": "NASDAQ:AMD", "title": "AMD" },
+            { "proName": "NYSE:BAC", "title": "Bank of America" },
+            { "proName": "NYSE:KO", "title": "Coca-Cola" },
+            { "proName": "NASDAQ:NFLX", "title": "Netflix" },
+            { "proName": "NYSE:PEP", "title": "PepsiCo" },
+            { "proName": "NYSE:LIN", "title": "Linde" },
+            { "proName": "NYSE:TMO", "title": "Thermo Fisher" },
+            { "proName": "NYSE:WFC", "title": "Wells Fargo" },
+            { "proName": "NYSE:MCD", "title": "McDonald's" },
+            { "proName": "NASDAQ:QCOM", "title": "Qualcomm" },
+            { "proName": "NYSE:DIS", "title": "Disney" },
+            { "proName": "NASDAQ:INTC", "title": "Intel" },
+            { "proName": "NYSE:ABT", "title": "Abbott Labs" },
+            { "proName": "NASDAQ:INTU", "title": "Intuit" },
+            { "proName": "NYSE:GE", "title": "General Electric" },
+            { "proName": "NYSE:CAT", "title": "Caterpillar" },
+            { "proName": "NYSE:ORCL", "title": "Oracle" },
+            { "proName": "NYSE:CSCO", "title": "Cisco" },
+            { "proName": "NYSE:PFE", "title": "Pfizer" },
+            { "proName": "NYSE:IBM", "title": "IBM" },
+            { "proName": "NYSE:AMAT", "title": "Applied Materials" },
+            { "proName": "NYSE:UBER", "title": "Uber" },
+            { "proName": "NYSE:DHR", "title": "Danaher" },
+            { "proName": "NASDAQ:AMGN", "title": "Amgen" },
+            { "proName": "NYSE:AXP", "title": "American Express" }
+          ],
+          "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": false, "displayMode": "adaptive", "locale": "en"
+        }
+      </script>
+    </div>
+
+    <main class="dashboard-container">
+      <div class="stock-grid">
+        <!-- ===== SAHAM 1: MSTR ===== -->
+        <div class="stock-container">
+          <div class="card chart-card" id="tv-widget-mstr"></div>
+          <div class="key-metrics-grid">
+            <div class="metric-card">
+              <h3 class="metric-title">MSTR Price</h3>
+              <p class="metric-value" id="mstr-price">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">Market Cap</h3>
+              <p class="metric-value" id="mstr-marketCap">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">Enterprise Value</h3>
+              <p class="metric-value" id="mstr-enterpriseValue">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">1Y Return</h3>
+              <p class="metric-value" id="mstr-1yReturn">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">P/E Ratio</h3>
+              <p class="metric-value" id="mstr-peRatio">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">EPS (TTM)</h3>
+              <p class="metric-value" id="mstr-eps">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">Volume</h3>
+              <p class="metric-value" id="mstr-volume">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">Avg Vol (3M)</h3>
+              <p class="metric-value" id="mstr-avgVolume">-</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== SAHAM 2: GOOGL ===== -->
+        <div class="stock-container">
+          <div class="card chart-card" id="tv-widget-googl"></div>
+          <div class="key-metrics-grid">
+            <div class="metric-card">
+              <h3 class="metric-title">GOOGL Price</h3>
+              <p class="metric-value" id="googl-price">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">Market Cap</h3>
+              <p class="metric-value" id="googl-marketCap">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">Enterprise Value</h3>
+              <p class="metric-value" id="googl-enterpriseValue">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">1Y Return</h3>
+              <p class="metric-value" id="googl-1yReturn">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">P/E Ratio</h3>
+              <p class="metric-value" id="googl-peRatio">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">EPS (TTM)</h3>
+              <p class="metric-value" id="googl-eps">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">Volume</h3>
+              <p class="metric-value" id="googl-volume">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">Avg Vol (3M)</h3>
+              <p class="metric-value" id="googl-avgVolume">-</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== SAHAM 3: AMZN ===== -->
+        <div class="stock-container">
+          <div class="card chart-card" id="tv-widget-amzn"></div>
+          <div class="key-metrics-grid">
+            <div class="metric-card">
+              <h3 class="metric-title">AMZN Price</h3>
+              <p class="metric-value" id="amzn-price">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">Market Cap</h3>
+              <p class="metric-value" id="amzn-marketCap">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">Enterprise Value</h3>
+              <p class="metric-value" id="amzn-enterpriseValue">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">1Y Return</h3>
+              <p class="metric-value" id="amzn-1yReturn">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">P/E Ratio</h3>
+              <p class="metric-value" id="amzn-peRatio">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">EPS (TTM)</h3>
+              <p class="metric-value" id="amzn-eps">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">Volume</h3>
+              <p class="metric-value" id="amzn-volume">-</p>
+            </div>
+            <div class="metric-card">
+              <h3 class="metric-title">Avg Vol (3M)</h3>
+              <p class="metric-value" id="amzn-avgVolume">-</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script
+      type="text/javascript"
+      src="https://s3.tradingview.com/tv.js"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
