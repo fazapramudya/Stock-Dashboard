@@ -1,46 +1,7 @@
+// File: script.js
 document.addEventListener("DOMContentLoaded", () => {
   const tickers = ["MSTR", "GOOGL", "AMZN"];
-
-  // --- DATA DUMMY DIMULAI DI SINI ---
-  const dummyData = {
-    MSTR: {
-      price: 188.39,
-      change: 7.06,
-      changePercent: 3.89,
-      marketCap: 55700000000,
-      enterpriseValue: 70282000000,
-      return1yPercent: -50.12,
-      peRatio: "31.45",
-      eps: "5.99",
-      volume: 2600000,
-      avgVolume: 3100000,
-    },
-    GOOGL: {
-      price: 319.63,
-      change: 3.82,
-      changePercent: 1.21,
-      marketCap: 2150000000000,
-      enterpriseValue: 2130000000000,
-      return1yPercent: 25.8,
-      peRatio: "28.70",
-      eps: "11.14",
-      volume: 18500000,
-      avgVolume: 22000000,
-    },
-    AMZN: {
-      price: 232.38,
-      change: -2.04,
-      changePercent: -0.87,
-      marketCap: 1980000000000,
-      enterpriseValue: 2050000000000,
-      return1yPercent: 45.33,
-      peRatio: "55.60",
-      eps: "4.18",
-      volume: 45000000,
-      avgVolume: 51000000,
-    },
-  };
-  // --- DATA DUMMY SELESAI ---
+  const REFRESH_INTERVAL = 300000;
 
   const formatLargeNumber = (num, isCurrency = false) => {
     if (num === null || typeof num === "undefined" || typeof num !== "number")
@@ -72,49 +33,80 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const fetchKeyMetrics = async (ticker) => {
+    // PERBAIKAN UTAMA: Panggil fungsi serverless kita sendiri
+    const functionUrl = `/.netlify/functions/fetch-yahoo?ticker=${ticker}`;
+
+    try {
+      const response = await fetch(functionUrl);
+      if (!response.ok)
+        throw new Error(`Network error: ${response.statusText}`);
+
+      const data = await response.json();
+      if (data.quoteSummary.error)
+        throw new Error(data.quoteSummary.error.description);
+
+      updateUIMetrics(ticker, data.quoteSummary.result[0]);
+    } catch (error) {
+      console.error(`Gagal mengambil metrik untuk ${ticker}:`, error);
+      const priceEl = document.getElementById(`${ticker.toLowerCase()}-price`);
+      if (priceEl) priceEl.innerHTML = `Gagal Memuat.`;
+    }
+  };
+
+  // Fungsi updateUIMetrics tetap sama persis
   const updateUIMetrics = (ticker, data) => {
     const tickerId = ticker.toLowerCase();
+    const price = data.price;
+    const summary = data.summaryDetail;
+    const stats = data.defaultKeyStatistics;
 
-    const change = data.change;
-    const changePercent = data.changePercent;
+    const change = price.regularMarketChange?.raw ?? 0;
+    const changePercent = (price.regularMarketChangePercent?.raw ?? 0) * 100;
     const priceEl = document.getElementById(`${tickerId}-price`);
-    priceEl.innerHTML = `$${data.price.toFixed(2)} <small class="${
-      change >= 0 ? "positive" : "negative"
-    }">${change >= 0 ? "+" : ""}${change.toFixed(2)} (${
+    priceEl.innerHTML = `$${(price.regularMarketPrice?.raw ?? 0).toFixed(
+      2
+    )} <small class="${change >= 0 ? "positive" : "negative"}">${
       change >= 0 ? "+" : ""
-    }${changePercent.toFixed(2)}%)</small>`;
+    }${change.toFixed(2)} (${change >= 0 ? "+" : ""}${changePercent.toFixed(
+      2
+    )}%)</small>`;
 
     document.getElementById(`${tickerId}-marketCap`).textContent =
-      formatLargeNumber(data.marketCap, true);
+      formatLargeNumber(price.marketCap?.raw, true);
     document.getElementById(`${tickerId}-enterpriseValue`).textContent =
-      formatLargeNumber(data.enterpriseValue, true);
+      formatLargeNumber(stats.enterpriseValue?.raw, true);
 
+    const high = summary.fiftyTwoWeekHigh?.raw;
+    const low = summary.fiftyTwoWeekLow?.raw;
     const returnEl = document.getElementById(`${tickerId}-1yReturn`);
-    returnEl.textContent = `${
-      data.return1yPercent >= 0 ? "+" : ""
-    }${data.return1yPercent.toFixed(2)}%`;
-    returnEl.className = `metric-value ${
-      data.return1yPercent >= 0 ? "positive" : "negative"
-    }`;
+    if (typeof high === "number" && typeof low === "number" && low !== 0) {
+      const return1yPercent = ((high - low) / low) * 100;
+      returnEl.textContent = `${
+        return1yPercent >= 0 ? "+" : ""
+      }${return1yPercent.toFixed(2)}%`;
+      returnEl.className = `metric-value ${
+        return1yPercent >= 0 ? "positive" : "negative"
+      }`;
+    } else {
+      returnEl.textContent = "N/A";
+    }
 
-    document.getElementById(`${tickerId}-peRatio`).textContent = data.peRatio;
-    document.getElementById(`${tickerId}-eps`).textContent = data.eps;
+    document.getElementById(`${tickerId}-peRatio`).textContent =
+      summary.trailingPE?.fmt || "N/A";
+    document.getElementById(`${tickerId}-eps`).textContent =
+      stats.trailingEps?.fmt || "N/A";
     document.getElementById(`${tickerId}-volume`).textContent =
-      formatLargeNumber(data.volume);
+      formatLargeNumber(price.regularMarketVolume?.raw);
     document.getElementById(`${tickerId}-avgVolume`).textContent =
-      formatLargeNumber(data.avgVolume);
+      formatLargeNumber(summary.averageVolume?.raw);
   };
 
   const init = () => {
     tickers.forEach((ticker) => {
-      // Muat widget chart (tetap live dari TradingView)
       loadTradingViewWidget(ticker);
-
-      // Muat metrik dari data dummy kita
-      const data = dummyData[ticker];
-      if (data) {
-        updateUIMetrics(ticker, data);
-      }
+      fetchKeyMetrics(ticker);
+      setInterval(() => fetchKeyMetrics(ticker), REFRESH_INTERVAL);
     });
   };
 
