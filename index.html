@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stock Dashboard (Dummy Data)</title>
+    <title>Stock Dashboard (from Google Sheets)</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -11,68 +11,17 @@
       <div class="logo">Strategy B</div>
     </header>
 
-    <div class="tradingview-widget-container ticker-tape">
-      <script
-        type="text/javascript"
-        src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
-        async
-      >
-        {
-          "symbols": [
-            { "proName": "NASDAQ:MSFT", "title": "Microsoft" },
-            { "proName": "NASDAQ:AAPL", "title": "Apple" },
-            { "proName": "NASDAQ:NVDA", "title": "NVIDIA" },
-            { "proName": "NASDAQ:GOOGL", "title": "Alphabet (Google)" },
-            { "proName": "NASDAQ:AMZN", "title": "Amazon" },
-            { "proName": "NASDAQ:META", "title": "Meta Platforms" },
-            { "proName": "NYSE:BRK.B", "title": "Berkshire Hathaway" },
-            { "proName": "NYSE:LLY", "title": "Eli Lilly" },
-            { "proName": "NASDAQ:AVGO", "title": "Broadcom" },
-            { "proName": "NASDAQ:TSLA", "title": "Tesla" },
-            { "proName": "NYSE:V", "title": "Visa" },
-            { "proName": "NYSE:JPM", "title": "JPMorgan Chase" },
-            { "proName": "NYSE:WMT", "title": "Walmart" },
-            { "proName": "NYSE:XOM", "title": "Exxon Mobil" },
-            { "proName": "NYSE:UNH", "title": "UnitedHealth" },
-            { "proName": "NYSE:MA", "title": "Mastercard" },
-            { "proName": "NYSE:PG", "title": "Procter & Gamble" },
-            { "proName": "NYSE:JNJ", "title": "Johnson & Johnson" },
-            { "proName": "NYSE:HD", "title": "Home Depot" },
-            { "proName": "NYSE:COST", "title": "Costco" },
-            { "proName": "NYSE:MRK", "title": "Merck" },
-            { "proName": "NYSE:ABBV", "title": "AbbVie" },
-            { "proName": "NASDAQ:ADBE", "title": "Adobe" },
-            { "proName": "NYSE:CVX", "title": "Chevron" },
-            { "proName": "NYSE:CRM", "title": "Salesforce" },
-            { "proName": "NASDAQ:AMD", "title": "AMD" },
-            { "proName": "NYSE:BAC", "title": "Bank of America" },
-            { "proName": "NYSE:KO", "title": "Coca-Cola" },
-            { "proName": "NASDAQ:NFLX", "title": "Netflix" },
-            { "proName": "NYSE:PEP", "title": "PepsiCo" },
-            { "proName": "NYSE:LIN", "title": "Linde" },
-            { "proName": "NYSE:TMO", "title": "Thermo Fisher" },
-            { "proName": "NYSE:WFC", "title": "Wells Fargo" },
-            { "proName": "NYSE:MCD", "title": "McDonald's" },
-            { "proName": "NASDAQ:QCOM", "title": "Qualcomm" },
-            { "proName": "NYSE:DIS", "title": "Disney" },
-            { "proName": "NASDAQ:INTC", "title": "Intel" },
-            { "proName": "NYSE:ABT", "title": "Abbott Labs" },
-            { "proName": "NASDAQ:INTU", "title": "Intuit" },
-            { "proName": "NYSE:GE", "title": "General Electric" },
-            { "proName": "NYSE:CAT", "title": "Caterpillar" },
-            { "proName": "NYSE:ORCL", "title": "Oracle" },
-            { "proName": "NYSE:CSCO", "title": "Cisco" },
-            { "proName": "NYSE:PFE", "title": "Pfizer" },
-            { "proName": "NYSE:IBM", "title": "IBM" },
-            { "proName": "NYSE:AMAT", "title": "Applied Materials" },
-            { "proName": "NYSE:UBER", "title": "Uber" },
-            { "proName": "NYSE:DHR", "title": "Danaher" },
-            { "proName": "NASDAQ:AMGN", "title": "Amgen" },
-            { "proName": "NYSE:AXP", "title": "American Express" }
-          ],
-          "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": false, "displayMode": "adaptive", "locale": "en"
-        }
-      </script>
+    <div class="ticker-tape">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script
+          type="text/javascript"
+          src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+          async
+        >
+          { "symbols": [ { "proName": "NASDAQ:MSTR", "title": "MicroStrategy" }, { "proName": "NASDAQ:GOOGL", "title": "Google" }, { "proName": "NASDAQ:AMZN", "title": "Amazon" } ], "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": false, "displayMode": "adaptive", "locale": "en" }
+        </script>
+      </div>
     </div>
 
     <main class="dashboard-container">
@@ -194,6 +143,16 @@
           </div>
         </div>
       </div>
+          <div class="raw-data-container">
+        <h2>Data Mentah dari Google Sheet:</h2>
+        <pre id="raw-data-output">Mengambil data...</pre>
+    </div>
+
+    <!-- Bagian dasbor lainnya tetap ada untuk referensi -->
+    <main class="dashboard-container">
+        <div class="stock-grid">
+            <!-- ... (semua elemen dasbor lainnya tetap sama) ... -->
+        </div>
     </main>
 
     <script

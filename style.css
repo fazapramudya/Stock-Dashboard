@@ -94,3 +94,17 @@ body {
 .negative {
   color: var(--red-color) !important;
 }
+.raw-data-container {
+  padding: 2rem;
+  background-color: #333;
+  margin: 1rem 2rem;
+  border-radius: 8px;
+}
+#raw-data-output {
+  background-color: #000;
+  color: #0f0;
+  padding: 1rem;
+  border: 1px solid #555;
+  white-space: pre-wrap;
+  font-family: monospace;
+}
