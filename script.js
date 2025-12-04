@@ -1,7 +1,6 @@
-// File: script.js
 document.addEventListener("DOMContentLoaded", () => {
   const tickers = ["MSTR", "GOOGL", "AMZN"];
-  const REFRESH_INTERVAL = 300000;
+  const REFRESH_INTERVAL = 300000; // Refresh data API setiap 5 menit
 
   const formatLargeNumber = (num, isCurrency = false) => {
     if (num === null || typeof num === "undefined" || typeof num !== "number")
@@ -34,11 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const fetchKeyMetrics = async (ticker) => {
-    // PERBAIKAN UTAMA: Panggil fungsi serverless kita sendiri
-    const functionUrl = `/.netlify/functions/fetch-yahoo?ticker=${ticker}`;
+    // PERBAIKAN UTAMA: URL sekarang sangat sederhana berkat netlify.toml
+    const apiUrl = `/api/v10/finance/quoteSummary/${ticker}?modules=price,summaryDetail,defaultKeyStatistics`;
 
     try {
-      const response = await fetch(functionUrl);
+      const response = await fetch(apiUrl);
       if (!response.ok)
         throw new Error(`Network error: ${response.statusText}`);
 
@@ -54,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Fungsi updateUIMetrics tetap sama persis
+  // Fungsi updateUIMetrics tidak berubah
   const updateUIMetrics = (ticker, data) => {
     const tickerId = ticker.toLowerCase();
     const price = data.price;
