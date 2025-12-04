@@ -1,4 +1,4 @@
 [[redirects]]
   from = "/api/*"
-  to = "https://query1.finance.yahoo.com/:splat"
+  to = "https://script.google.com/macros/s/AKfycbyYAVWlZNGSwK9EtVv5JtnXG27MEXN1t_iIo8XMWvNBL3mdLIZRC3jYjBqyrtH2y2b18w/exec"
   status = 200
