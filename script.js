@@ -119,11 +119,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById(`${tickerId}-marketcap`).textContent =
       formatLargeNumber(getData("marketcap"), true);
-    document.getElementById(`${tickerId}-enterprisevalue`).textContent =
-      formatLargeNumber(getData("enterprisevalue"), true);
+    document.getElementById(`${tickerId}-totalowned`).textContent =
+      formatLargeNumber(getData("totalowned"), true);
 
-    const returnEl = document.getElementById(`${tickerId}-1yreturn`);
-    const return1y = parseFloat(getData("return1y"));
+    const returnEl = document.getElementById(`${tickerId}-balance`);
+    const return1y = parseFloat(getData("balance"));
     if (!isNaN(return1y)) {
       returnEl.textContent = `${return1y >= 0 ? "+" : ""}${return1y.toFixed(
         2
