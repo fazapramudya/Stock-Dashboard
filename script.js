@@ -106,10 +106,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const tickerId = ticker.toLowerCase();
     const getData = (key) => data[key.toLowerCase()];
 
+    // Bagian ini sudah benar
     const price = parseFloat(getData("price")) || 0;
     const change = parseFloat(getData("change")) || 0;
     const changePercent = parseFloat(getData("changepercent")) || 0;
-
     const priceEl = document.getElementById(`${tickerId}-price`);
     priceEl.innerHTML = `$${price.toFixed(2)} <small class="${
       change >= 0 ? "positive" : "negative"
@@ -119,22 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById(`${tickerId}-marketcap`).textContent =
       formatLargeNumber(getData("marketcap"), true);
-    document.getElementById(`${tickerId}-totalowned`).textContent =
-      formatLargeNumber(getData("totalowned"), true);
-
-    const returnEl = document.getElementById(`${tickerId}-balance`);
-    const return1y = parseFloat(getData("balance"));
-    if (!isNaN(return1y)) {
-      returnEl.textContent = `${return1y >= 0 ? "+" : ""}${return1y.toFixed(
-        2
-      )}%`;
-      returnEl.className = `metric-value ${
-        return1y >= 0 ? "positive" : "negative"
-      }`;
-    } else {
-      returnEl.textContent = "N/A";
-    }
-
     document.getElementById(`${tickerId}-peratio`).textContent =
       getData("peratio") || "N/A";
     document.getElementById(`${tickerId}-eps`).textContent =
@@ -143,6 +127,27 @@ document.addEventListener("DOMContentLoaded", () => {
       formatLargeNumber(getData("volume"));
     document.getElementById(`${tickerId}-avgvolume`).textContent =
       formatLargeNumber(getData("avgvolume"));
+
+    // --- PERBAIKAN DI SINI ---
+
+    // 1. Ubah Total Owned menjadi angka saja (bukan mata uang)
+    // Cukup panggil formatLargeNumber tanpa parameter kedua (atau set ke false)
+    document.getElementById(`${tickerId}-totalowned`).textContent =
+      formatLargeNumber(getData("totalowned"));
+
+    // 2. Ubah Balance menjadi format mata uang
+    const balanceEl = document.getElementById(`${tickerId}-balance`);
+    const balanceValue = parseFloat(getData("balance"));
+    if (!isNaN(balanceValue)) {
+      // Gunakan formatLargeNumber dengan isCurrency = true
+      balanceEl.textContent = formatLargeNumber(balanceValue, true);
+      // Atur warna berdasarkan nilainya (positif atau negatif)
+      balanceEl.className = `metric-value ${
+        balanceValue >= 0 ? "positive" : "negative"
+      }`;
+    } else {
+      balanceEl.textContent = "N/A";
+    }
   };
 
   const init = () => {
