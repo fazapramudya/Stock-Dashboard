@@ -156,5 +156,23 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(fetchKeyMetrics, REFRESH_INTERVAL);
   };
 
+  const tabs = document.querySelectorAll(".nav-tab");
+  const tabContents = document.querySelectorAll(".tab-content");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      // Hapus kelas 'active' dari semua tombol dan konten
+      tabs.forEach((t) => t.classList.remove("active"));
+      tabContents.forEach((c) => c.classList.remove("active"));
+
+      // Tambahkan kelas 'active' ke tombol yang diklik
+      tab.classList.add("active");
+
+      // Tampilkan konten yang sesuai
+      const targetTab = tab.getAttribute("data-tab");
+      document.getElementById(targetTab).classList.add("active");
+    });
+  });
+
   init();
 });
