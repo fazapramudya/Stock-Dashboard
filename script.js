@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const tickers = ["MSTR", "GOOGL", "AMZN"];
+  const tickers = ["MSTR",  "AMZN"];
   const REFRESH_INTERVAL = 300000;
 
   // ===================================================================
